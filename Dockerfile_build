@@ -6,6 +6,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ARG coq_version="8.8.2"
 ARG math_comp_version="1.7.0"
 
+ENV COQBIN /usr/local/bin/
+WORKDIR /tmp
+
 # change apt source
 RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -18,12 +21,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   wget \
   x11-apps \
 && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
-#COPY res/entrypoint.sh /usr/local/bin
-#RUN chmod +x /usr/local/bin/entrypoint.sh
-
-
-WORKDIR /tmp
 
 RUN wget --no-check-certificate -O - "https://github.com/coq/coq/archive/V${coq_version}.tar.gz" | tar zxf - \
 && cd "coq-${coq_version}" \
@@ -38,11 +35,13 @@ RUN wget --no-check-certificate -O - "https://github.com/coq/coq/archive/V${coq_
 && make \
 && make install
 
-ENV COQBIN /usr/local/bin/
 RUN wget --no-check-certificate -O - "https://github.com/math-comp/math-comp/archive/mathcomp-${math_comp_version}.tar.gz" | tar zxf - \
 && cd "math-comp-mathcomp-${math_comp_version}/mathcomp" \
 && make \
 && make install
+
+#COPY res/entrypoint.sh /usr/local/bin
+#RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /coq-work
 
@@ -52,4 +51,3 @@ ENV COQ_GID 99999
 
 #ENTRYPOINT ["entrypoint.sh"]
 CMD ["bash"]
-
