@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=coq-dev /usr/local/bin /usr/local/bin
 COPY --from=coq-dev /usr/local/lib /usr/local/lib
 COPY --from=coq-dev /usr/local/share /usr/local/share
+COPY --from=coq-dev /usr/local/lib/coq/user-contrib/mathcomp/ /usr/local/lib/coq/user-contrib/mathcomp/
 
 WORKDIR /coq-work
 

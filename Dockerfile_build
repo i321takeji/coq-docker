@@ -3,7 +3,8 @@ FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG coq_version="8.9.0"
+ARG coq_version="8.8.2"
+ARG math_comp_version="1.7.0"
 
 # change apt source
 RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
@@ -32,7 +33,14 @@ RUN wget --no-check-certificate -O - "https://github.com/coq/coq/archive/V${coq_
                -datadir /usr/local/share/coq \
                -mandir /usr/local/share/man \
                -docdir /usr/local/share/doc/coq \
+               -emacslib /usr/local/share/emacs/site-lisp \
                -coqdocdir /usr/local/share/texmf/tex/latex/misc \
+&& make \
+&& make install
+
+ENV COQBIN /usr/local/bin/
+RUN wget --no-check-certificate -O - "https://github.com/math-comp/math-comp/archive/mathcomp-${math_comp_version}.tar.gz" | tar zxf - \
+&& cd "math-comp-mathcomp-${math_comp_version}/mathcomp" \
 && make \
 && make install
 
