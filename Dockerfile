@@ -1,4 +1,4 @@
-FROM my/coq-build AS coq-dev
+FROM my/build-coq AS coq-dev
 
 FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
@@ -11,19 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   vim \
 && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
-#COPY res/entrypoint.sh /usr/local/bin
-#RUN chmod +x /usr/local/bin/entrypoint.sh
-
 COPY --from=coq-dev /usr/local/bin /usr/local/bin
 COPY --from=coq-dev /usr/local/lib /usr/local/lib
 COPY --from=coq-dev /usr/local/share /usr/local/share
-COPY --from=coq-dev /usr/local/lib/coq/user-contrib/mathcomp/ /usr/local/lib/coq/user-contrib/mathcomp/
 
 WORKDIR /coq-work
 
-ENV COQ_USER developer
-ENV COQ_UID 99999
-ENV COQ_GID 99999
-
-#ENTRYPOINT ["entrypoint.sh"]
 CMD ["bash"]
