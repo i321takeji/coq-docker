@@ -1,6 +1,9 @@
-DOCKER_ID = my
-
 MAKE = make
 
 build:
-	DOCKER_ID=$(DOCKER_ID) $(MAKE) -e -C coq build
+	$(MAKE) -C coq build
+	$(MAKE) -C coq+math-comp build
+
+distclean:
+	-$(MAKE) -C coq distclean
+	-$(MAKE) -C coq+math-comp distclean

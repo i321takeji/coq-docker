@@ -1,4 +1,4 @@
-FROM my/build-coq AS coq-dev
+FROM my/build-coq:8.8.2 AS coq-dev
 
 FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
