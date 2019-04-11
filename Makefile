@@ -1,8 +1,9 @@
-DOCKER_BUILD_TAG = my/coq-build
-DOCKER_TAG = my/coq
+MAKE = make
 
 build:
-	-docker build --no-cache -t $(DOCKER_BUILD_TAG) -f Dockerfile_build .
-	docker image prune -f
-	-docker build --no-cache -t $(DOCKER_TAG) .
-	docker image prune -f
+	$(MAKE) -C coq build
+	$(MAKE) -C coq+math-comp build
+
+distclean:
+	-$(MAKE) -C coq distclean
+	-$(MAKE) -C coq+math-comp distclean
