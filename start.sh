@@ -2,9 +2,10 @@
 
 set -ex
 
-CONTAINAER_HOST="coq"
-IMAGE="my/${CONTAINAER_HOST}"
-CONTAINER="my${CONTAINAER_HOST}_container"
+DOCKER_ID='bamboog130'
+CONTAINAER_HOST="coq:mathcomp-1.7.0"
+IMAGE="${DOCKER_ID}/${CONTAINAER_HOST}"
+CONTAINER="${DOCKER_ID}${CONTAINAER_HOST}_container"
 
 WORK_DIR="$1"
 WORK_VOLUME=""
@@ -21,8 +22,6 @@ fi
 
 bash -c "docker run --rm -i -t --net host -e DISPLAY=${DISPLAY} \
                     -e COQ_UID=`id -u` -e COQ_GID=`id -g` \
-                    -v ${HOME}/.Xauthority:/root/.Xauthority:rw \
+                    -v ${HOME}/.Xauthority:/xfiles/.Xauthority:rw \
                     ${WORK_VOLUME} \
                     ${IMAGE}"
-#                   --hostname "${CONTAINAER_HOST}" \
-#                    -v ${HOME}/.Xauthority:/xfiles/.Xauthority:rw \
