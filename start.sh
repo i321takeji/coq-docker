@@ -1,6 +1,6 @@
 #/bin/bash -
 
-set -ex
+set -e
 
 DOCKER_ID='bamboog130'
 CONTAINAER_HOST="coq:mathcomp-1.7.0"
