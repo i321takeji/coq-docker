@@ -1,4 +1,4 @@
-FROM my/coq:8.8.2 AS math-comp-dev
+FROM bamboog130/coq:8.8.2
 
 ARG math_comp_version="1.7.0"
 
