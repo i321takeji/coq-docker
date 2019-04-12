@@ -2,7 +2,7 @@ include ../config.mk
 
 COQ_VERSION = 8.8.2
 
-DOCKER_BUILD_COQ_TAG = $(DOCKER_ID)/build-coq:$(COQ_VERSION)
+DOCKER_BUILD_COQ_TAG = $(DOCKER_ID)/coq:src-$(COQ_VERSION)
 DOCKER_COQ_TAG = $(DOCKER_ID)/coq:$(COQ_VERSION)
 
 build: coq

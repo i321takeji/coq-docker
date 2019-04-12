@@ -1,4 +1,4 @@
-FROM bamboog130/build-math-comp:1.7.0 AS math-comp-dev
+FROM bamboog130/coq:srcmathcomp-1.7.0 AS math-comp-dev
 
 FROM bamboog130/coq:8.8.2
 

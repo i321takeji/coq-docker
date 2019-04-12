@@ -2,8 +2,8 @@ include ../config.mk
 
 MATH_COMP_VERSION = 1.7.0
 
-DOCKER_BUILD_MATH_COMP_TAG = $(DOCKER_ID)/build-math-comp:$(MATH_COMP_VERSION)
-DOCKER_COQ_MATH_COMP_TAG = $(DOCKER_ID)/coq_math-comp:$(MATH_COMP_VERSION)
+DOCKER_BUILD_MATH_COMP_TAG = $(DOCKER_ID)/coq:srcmathcomp-$(MATH_COMP_VERSION)
+DOCKER_COQ_MATH_COMP_TAG = $(DOCKER_ID)/coq:mathcomp-$(MATH_COMP_VERSION)
 
 
 build: coq_math-comp

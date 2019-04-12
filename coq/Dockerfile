@@ -1,4 +1,4 @@
-FROM bamboog130/build-coq:8.8.2 AS coq-dev
+FROM bamboog130/coq:src-8.8.2 AS coq-dev
 
 FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
