@@ -1,4 +1,4 @@
-FROM bamboog130/coq:src-8.8.2 AS coq-dev
+FROM bamboog130/coq:src-8.9.0 AS coq-dev
 
 FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
@@ -14,6 +14,7 @@ RUN sed -i.bak -e "s%http://.*.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Lin
 COPY --from=coq-dev /usr/local/bin /usr/local/bin
 COPY --from=coq-dev /usr/local/lib /usr/local/lib
 COPY --from=coq-dev /usr/local/share /usr/local/share
+COPY --from=coq-dev /etc/xdg/coq /etc/xdg/coq
 
 COPY res/entrypoint.sh /usr/local/coq_init/entrypoint.sh
 RUN chmod +x /usr/local/coq_init/entrypoint.sh

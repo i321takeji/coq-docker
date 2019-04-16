@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 ENV DEBCONF_NOWARNINGS yes
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG coq_version="8.8.2"
+ARG coq_version="8.9.0"
 
 ENV COQBIN /usr/local/bin/
 WORKDIR /tmp
@@ -29,7 +29,6 @@ RUN wget -O - "https://github.com/coq/coq/archive/V${coq_version}.tar.gz" | tar 
                -datadir /usr/local/share/coq \
                -mandir /usr/local/share/man \
                -docdir /usr/local/share/doc/coq \
-               -emacslib /usr/local/share/emacs/site-lisp \
                -coqdocdir /usr/local/share/texmf/tex/latex/misc \
 && make \
 && make install
