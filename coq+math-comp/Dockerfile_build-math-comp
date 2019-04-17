@@ -1,6 +1,6 @@
-FROM bamboog130/coq:8.8.2
+FROM bamboog130/coq:8.9.0
 
-ARG math_comp_version="1.7.0"
+ARG math_comp_version="1.8.0"
 
 #ENV COQBIN /usr/local/bin/
 WORKDIR /tmp

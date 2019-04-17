@@ -3,7 +3,7 @@
 set -e
 
 DOCKER_ID='bamboog130'
-CONTAINAER_HOST="coq:mathcomp-1.7.0"
+CONTAINAER_HOST="coq:mathcomp-1.8.0"
 IMAGE="${DOCKER_ID}/${CONTAINAER_HOST}"
 CONTAINER="${DOCKER_ID}${CONTAINAER_HOST}_container"
 
