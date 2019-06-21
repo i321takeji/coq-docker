@@ -9,11 +9,11 @@ DOCKER_COQ_MATH_COMP_TAG = $(DOCKER_ID)/coq:mathcomp-$(MATH_COMP_VERSION)
 build: coq_math-comp
 
 coq_math-comp: build-math-comp
-	-docker build --no-cache -t $(DOCKER_COQ_MATH_COMP_TAG) .
+	-docker build -t $(DOCKER_COQ_MATH_COMP_TAG) .
 	docker image prune -f
 
 build-math-comp:
-	-docker build --no-cache -t $(DOCKER_BUILD_MATH_COMP_TAG) -f Dockerfile_build-math-comp .
+	-docker build --target math-comp-build -t $(DOCKER_BUILD_MATH_COMP_TAG) .
 	docker image prune -f
 
 distclean:
