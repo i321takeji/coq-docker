@@ -14,7 +14,7 @@ init_user() {
   echo "cd `pwd`" >> "/home/${USERNAME}/.profile"
   echo "export DISPLAY=$DISPLAY" >> "/home/${USERNAME}/.profile"
   ln -s /xfiles/.Xauthority "/home/${USERNAME}"
-  chown "${USERNAME}:${USERNAME}" /coq-work
+# chown "${USERNAME}:${USERNAME}" /coq-work
 }
 
 
