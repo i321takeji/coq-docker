@@ -8,11 +8,11 @@ DOCKER_COQ_TAG = $(DOCKER_ID)/coq:$(COQ_VERSION)
 build: coq
 
 coq: build-coq
-	-docker build --no-cache -t $(DOCKER_COQ_TAG) .
+	-docker build -t $(DOCKER_COQ_TAG) .
 	docker image prune -f
 
 build-coq:
-	-docker build --no-cache -t $(DOCKER_BUILD_COQ_TAG) -f Dockerfile_build-coq .
+	-docker build --no-cache --target coq-build -t $(DOCKER_BUILD_COQ_TAG) .
 	docker image prune -f
 
 distclean:
