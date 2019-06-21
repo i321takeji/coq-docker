@@ -1,0 +1,6 @@
+#!/bin/bash -
+
+env
+
+docker build --no-cache --target coq-build -t ${IMAGE_NAME}-src .
+docker build -t ${IMAGE_NAME} .
